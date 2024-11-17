@@ -32,4 +32,4 @@ def register():
     #hash password before storing
     hashed_password = bcrypt.generate_password_hash(data['password']).decode('utf-8')
 
-    return jsonify({"hash":hashed_password})
+    return jsonify({"hash":hashed_password}), 200
