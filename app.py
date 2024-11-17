@@ -16,6 +16,8 @@ migrate = Migrate()
 # Create the Flask app
 app = Flask(__name__)
 
+print(os.getenv('DATABASE_URL'))
+
 # Load configuration from environment variables
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
 app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL')
