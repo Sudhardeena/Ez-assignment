@@ -7,4 +7,7 @@ psycopg2-binary
 itsdangerous
 python-dotenv
 werkzeug
+flask-bcrypt
+flask-jwt-extended
+
 

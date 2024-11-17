@@ -1,5 +1,4 @@
 from app import db  
-from werkzeug.security import generate_password_hash, check_password_hash  # For hashing and checking passwords
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -12,8 +11,4 @@ class User(db.Model):
     def __repr__(self):
         return f'<User {self.username}>'
 
-    def set_password(self,password): #to hash password before storing to database
-        self.password = generate_password_hash(password)
-
-    def check_password(self,password): #to compared with hashed password stored in db
-        return check_password_hash(self.password,password)
+    

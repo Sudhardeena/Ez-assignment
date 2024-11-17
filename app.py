@@ -4,14 +4,16 @@ from flask_mail import Mail
 from flask_migrate import Migrate
 import os
 from dotenv import load_dotenv
+from flask_bcrypt import Bcrypt
 
 # Load environment variables from .env file
 load_dotenv()
 
 # Initialize extensions
 db = SQLAlchemy()
-mail = Mail()
+# mail = Mail()
 migrate = Migrate()
+bcrypt = Bcrypt()
 
 # Create the Flask app
 app = Flask(__name__)
@@ -34,6 +36,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db.init_app(app)
 # mail.init_app(app)
 migrate.init_app(app, db)
+bcrypt.init_app(app)
 
 # Import and register routes after app initialization to avoid circular import
 from routes import main
