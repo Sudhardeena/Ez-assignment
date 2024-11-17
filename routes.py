@@ -25,8 +25,10 @@ def register():
     #checking user already exists
     from models import User, db
     if User.query.filter_by(username=data['username']).first():
+        print('checed username')
         return jsonify({"message":"username already taken"}), 400
     elif User.query.filter_by(email=data['email']).first():
+        print('checked email')
         return jsonify({"message":"email already registered"}), 400
 
     #hash password before storing
