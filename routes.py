@@ -24,14 +24,16 @@ def register():
 
     #checking user already exists
     from models import User, db
-    if User.query.filter_by(username=data['username']).first():
-        print('checed username')
-        return jsonify({"message":"username already taken"}), 400
-    elif User.query.filter_by(email=data['email']).first():
-        print('checked email')
-        return jsonify({"message":"email already registered"}), 400
+    # Check if email already exists
+    if User.query.filter_by(email=data['email']).first():
+        return jsonify({"message": "Email already registered!"}), 400
 
-    #hash password before storing
+    # Hash the password using bcrypt
     hashed_password = bcrypt.generate_password_hash(data['password']).decode('utf-8')
 
-    return jsonify({"hash":hashed_password}), 200
+    # Create the new user and save to the database
+    new_user = User(username=data['username'], email=data['email'], password=hashed_password)
+    db.session.add(new_user)
+    db.session.commit()
+
+    return jsonify({"message": "User registered successfully!"}), 201
