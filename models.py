@@ -1,4 +1,4 @@
-from app import db
+from app import db  # Only import db directly from app.py, no other imports here
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
