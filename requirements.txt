@@ -6,3 +6,5 @@ Flask-Migrate
 psycopg2-binary
 itsdangerous
 python-dotenv
+werkzeug
+
